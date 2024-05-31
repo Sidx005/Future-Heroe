@@ -1,0 +1,62 @@
+/* src/Footer.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.footer {
+  background: linear-gradient(to right bottom, rgb(255, 232, 236), rgba(193, 169, 169, 0.422));
+  padding: 2rem;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 30px 0 black;
+  border-radius: 0;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-align: start;
+  gap: 2rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h2 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+.footer-section p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.5em;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: royalblue;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2em;
+}
+
+.footer-bottom p {
+  margin: 0;
+}

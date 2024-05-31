@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   font-family: Poppins,sans-serif;
+    position: fixed;
+    top: 0;
+    padding: 2.5rem;
+    font-size: 1.5rem;
+    background: #fff;
+    z-index: 999;
+    box-shadow: 0 0 10px 0 grey
+}
+
+.bars{
+     position: absolute;
+     right: 1.25em;
+     top: 2.2em;
+     display: none;
+}
+.navbar ul{
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    
+}
+.navbar a{
+    padding: 1.5rem;
+    transition: 0.5s ease-in-out;
+    border-radius: 50px;
+}
+.navbar ul a:hover{
+    background-color: royalblue;
+    color: #fff;
+    border-radius: 50px;
+    transition: 0.5s ease-in-out;
+
+}
+.navbar a{
+    text-decoration: none;
+    color: #000;
+}
+@media(max-width:1188px){
+    .navbar{
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;       
+  margin-bottom: 1.25em;
+
+    }
+.bars{
+    display: flex;
+}
+    .navbar ul{
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+        padding: 30px;
+        font-size: 15px;
+
+        margin-bottom: 1.25rem;
+    }
+    .navbar li,a{
+        width: 100%;
+    }
+    .navbar ul.open{
+        display: flex;
+            }
+    .title h2{
+        font-size: 2.2rem;
+    }
+    .navbar ul li{
+        text-align: left;
+    }
+}
+@media(max-width:935px){
+    .sect1{
+        margin-top: 17em;
+    }
+    .sect2{
+        margin-top: 2em;
+    }
+    .sect1 button{
+        font-size: 1.2rem;
+    }
+}
