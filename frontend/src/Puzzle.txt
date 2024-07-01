@@ -1,0 +1,50 @@
+import React, { useState, useEffect } from 'react';
+import './MemoryGame.css';
+
+const cardsData = [
+  { id: 1, content: 'Right to Education', matched: false },
+  { id: 2, content: 'Right to Protection', matched: false },
+  { id: 3, content: 'Right to Health', matched: false },
+  { id: 4, content: 'Right to Participation', matched: false },
+  { id: 5, content: 'Right to Education', matched: false },
+  { id: 6, content: 'Right to Protection', matched: false },
+  { id: 7, content: 'Right to Health', matched: false },
+  { id: 8, content: 'Right to Participation', matched: false }
+];
+
+function MemoryGame() {
+  const [cards, setCards] = useState([...cardsData].sort(() => Math.random() - 0.5));
+  const [flippedCards, setFlippedCards] = useState([]);
+  const [matchedCards, setMatchedCards] = useState([]);
+
+  const handleCardClick = (index) => {
+    if (flippedCards.length === 2) return;
+
+    const newFlippedCards = [...flippedCards, index];
+    setFlippedCards(newFlippedCards);
+
+    if (newFlippedCards.length === 2) {
+      const [first, second] = newFlippedCards;
+      if (cards[first].content === cards[second].content) {
+        setMatchedCards([...matchedCards, first, second]);
+      }
+      setTimeout(() => setFlippedCards([]), 1000);
+    }
+  };
+
+  return (
+    <div className="memory-game grid grid-cols-4 gap-4 p-4">
+      {cards.map((card, index) => (
+        <div
+          key={index}
+          className={`memory-card ${flippedCards.includes(index) || matchedCards.includes(index) ? 'flipped' : ''}`}
+          onClick={() => handleCardClick(index)}
+        >
+          {flippedCards.includes(index) || matchedCards.includes(index) ? card.content : 'Click to flip'}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default MemoryGame;

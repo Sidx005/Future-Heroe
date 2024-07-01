@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState}from 'react';
 import { motion } from 'framer-motion';
 import Hero from './Superhero.png';
 import './Landinngpg.css';
@@ -6,7 +6,8 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 
 const Landingpg = () => {
-    
+    const[username,setUsername]=useState('')
+
     const Services = [
         {
             id: 1,
@@ -42,7 +43,7 @@ const Landingpg = () => {
 
     return (
         <div className='body'>
-            <Navbar/>
+            <Navbar username={username}/>
             <div className="sect1">
                 <span>
                     <h1>Children First: Ensuring Rights, <br />
@@ -98,10 +99,10 @@ const Landingpg = () => {
                 viewport={{ margin: '50px' }}
             >
                 <h1>Our Services</h1>
-                <div className="grid">
+                <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-1 items-center justify-items-center ">
                     {
                         Services.map(items => (
-                            <div className='box' key={items.id}>
+                            <div className='box h-full w-full flex flex-col items-center' key={items.id}>
                                 <img src={items.src} alt="" />
                                 <p>{items.title}</p>
                             </div>
@@ -113,7 +114,7 @@ const Landingpg = () => {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
-                viewport={{ margin: '50px' }}
+                // viewport={{ margin: '50px' }}
             >
                 <h1>Analytics</h1>
             </motion.div>

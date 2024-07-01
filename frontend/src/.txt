@@ -1,0 +1,343 @@
+password:sidPass
+username:desaisiddharth1246
+mongodb+srv://desaisiddharth1246:sidPass@cluster1.cpasxcj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1
+
+
+
+
+
+
+
+
+
+Creating a registration and login page using MongoDB Atlas, React, and Node.js involves several steps. Here's a detailed guide to help you set up this functionality.
+
+### Prerequisites
+
+1. **Node.js** installed on your machine.
+2. **MongoDB Atlas** account.
+3. Basic knowledge of **React** and **Express.js**.
+
+### Steps
+
+1. **Set up MongoDB Atlas:**
+   - Create a MongoDB Atlas account and set up a new cluster.
+   - Create a database and a collection for users.
+   - Whitelist your IP address and create a database user.
+
+2. **Set up the Backend with Node.js and Express:**
+
+   - Initialize a new Node.js project:
+     ```bash
+     mkdir auth-system
+     cd auth-system
+     npm init -y
+     ```
+
+   - Install necessary packages:
+     ```bash
+     npm install express mongoose bcryptjs jsonwebtoken cors body-parser
+     ```
+
+   - Create the project structure:
+     ```bash
+     mkdir server
+     cd server
+     mkdir config controllers models routes
+     touch server.js
+     ```
+
+   - Create a configuration file for MongoDB connection in `config/db.js`:
+     ```javascript
+     const mongoose = require('mongoose');
+
+     const connectDB = async () => {
+       try {
+         await mongoose.connect('your-mongodb-atlas-uri', {
+           useNewUrlParser: true,
+           useUnifiedTopology: true,
+           useCreateIndex: true,
+         });
+         console.log('MongoDB connected...');
+       } catch (err) {
+         console.error(err.message);
+         process.exit(1);
+       }
+     };
+
+     module.exports = connectDB;
+     ```
+
+   - Create a User model in `models/User.js`:
+     ```javascript
+     const mongoose = require('mongoose');
+     const bcrypt = require('bcryptjs');
+
+     const UserSchema = new mongoose.Schema({
+       name: {
+         type: String,
+         required: true,
+       },
+       email: {
+         type: String,
+         required: true,
+         unique: true,
+       },
+       password: {
+         type: String,
+         required: true,
+       },
+     });
+
+     UserSchema.pre('save', async function (next) {
+       if (!this.isModified('password')) {
+         return next();
+       }
+       const salt = await bcrypt.genSalt(10);
+       this.password = await bcrypt.hash(this.password, salt);
+       next();
+     });
+
+     const User = mongoose.model('User', UserSchema);
+
+     module.exports = User;
+     ```
+
+   - Create controllers for registration and login in `controllers/auth.js`:
+     ```javascript
+     const User = require('../models/User');
+     const bcrypt = require('bcryptjs');
+     const jwt = require('jsonwebtoken');
+
+     exports.register = async (req, res) => {
+       const { name, email, password } = req.body;
+
+       try {
+         let user = await User.findOne({ email });
+         if (user) {
+           return res.status(400).json({ msg: 'User already exists' });
+         }
+
+         user = new User({
+           name,
+           email,
+           password,
+         });
+
+         await user.save();
+
+         const payload = {
+           user: {
+             id: user.id,
+           },
+         };
+
+         jwt.sign(
+           payload,
+           'your_jwt_secret',
+           { expiresIn: 360000 },
+           (err, token) => {
+             if (err) throw err;
+             res.json({ token });
+           }
+         );
+       } catch (err) {
+         console.error(err.message);
+         res.status(500).send('Server error');
+       }
+     };
+
+     exports.login = async (req, res) => {
+       const { email, password } = req.body;
+
+       try {
+         let user = await User.findOne({ email });
+         if (!user) {
+           return res.status(400).json({ msg: 'Invalid Credentials' });
+         }
+
+         const isMatch = await bcrypt.compare(password, user.password);
+         if (!isMatch) {
+           return res.status(400).json({ msg: 'Invalid Credentials' });
+         }
+
+         const payload = {
+           user: {
+             id: user.id,
+           },
+         };
+
+         jwt.sign(
+           payload,
+           'your_jwt_secret',
+           { expiresIn: 360000 },
+           (err, token) => {
+             if (err) throw err;
+             res.json({ token });
+           }
+         );
+       } catch (err) {
+         console.error(err.message);
+         res.status(500).send('Server error');
+       }
+     };
+     ```
+
+   - Set up routes in `routes/auth.js`:
+     ```javascript
+     const express = require('express');
+     const router = express.Router();
+     const { register, login } = require('../controllers/auth');
+
+     router.post('/register', register);
+     router.post('/login', login);
+
+     module.exports = router;
+     ```
+
+   - Set up the Express server in `server.js`:
+     ```javascript
+     const express = require('express');
+     const connectDB = require('./config/db');
+     const cors = require('cors');
+
+     const app = express();
+
+     // Connect Database
+     connectDB();
+
+     // Init Middleware
+     app.use(express.json({ extended: false }));
+     app.use(cors());
+
+     // Define Routes
+     app.use('/api/auth', require('./routes/auth'));
+
+     const PORT = process.env.PORT || 5000;
+
+     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+     ```
+
+3. **Set up the Frontend with React:**
+
+   - Create a new React project:
+     ```bash
+     npx create-react-app client
+     cd client
+     npm install axios
+     ```
+
+   - Create a folder structure for components and pages:
+     ```bash
+     mkdir src/components src/pages
+     ```
+
+   - Create a Registration page in `src/pages/Register.js`:
+     ```javascript
+     import React, { useState } from 'react';
+     import axios from 'axios';
+
+     const Register = () => {
+       const [formData, setFormData] = useState({
+         name: '',
+         email: '',
+         password: '',
+       });
+
+       const { name, email, password } = formData;
+
+       const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+       const onSubmit = async (e) => {
+         e.preventDefault();
+         const newUser = {
+           name,
+           email,
+           password,
+         };
+         try {
+           const config = {
+             headers: {
+               'Content-Type': 'application/json',
+             },
+           };
+           const body = JSON.stringify(newUser);
+           const res = await axios.post('http://localhost:5000/api/auth/register', body, config);
+           console.log(res.data);
+         } catch (err) {
+           console.error(err.response.data);
+         }
+       };
+
+       return (
+         <form onSubmit={onSubmit}>
+           <input type="text" placeholder="Name" name="name" value={name} onChange={onChange} required />
+           <input type="email" placeholder="Email" name="email" value={email} onChange={onChange} required />
+           <input type="password" placeholder="Password" name="password" value={password} onChange={onChange} required />
+           <input type="submit" value="Register" />
+         </form>
+       );
+     };
+
+     export default Register;
+     ```
+
+   - Create a Login page in `src/pages/Login.js`:
+     ```javascript
+     import React, { useState } from 'react';
+     import axios from 'axios';
+
+     const Login = () => {
+       const [formData, setFormData] = useState({
+         email: '',
+         password: '',
+       });
+
+       const { email, password } = formData;
+
+       const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+       const onSubmit = async (e) => {
+         e.preventDefault();
+         const user = {
+           email,
+           password,
+         };
+         try {
+           const config = {
+             headers: {
+               'Content-Type': 'application/json',
+             },
+           };
+           const body = JSON.stringify(user);
+           const res = await axios.post('http://localhost:5000/api/auth/login', body, config);
+           console.log(res.data);
+         } catch (err) {
+           console.error(err.response.data);
+         }
+       };
+
+       return (
+         <form onSubmit={onSubmit}>
+           <input type="email" placeholder="Email" name="email" value={email} onChange={onChange} required />
+           <input type="password" placeholder="Password" name="password" value={password} onChange={onChange} required />
+           <input type="submit" value="Login" />
+         </form>
+       );
+     };
+
+     export default Login;
+     ```
+
+4. **Connect Frontend and Backend:**
+   - Ensure both backend and frontend servers are running.
+   - The React app should now be able to register and login users through the backend API.
+
+### Additional Improvements
+
+- Add validation and error handling on both frontend and backend.
+- Store JWT token securely on the frontend (e.g., in localStorage or cookies).
+- Implement protected routes in React to handle authenticated users.
+- Add styles to the React components to improve UI.
+
+By following these steps, you can create a basic registration and login system using MongoDB Atlas, React, and Node.js.
