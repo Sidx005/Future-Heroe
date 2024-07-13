@@ -73,11 +73,10 @@ header h1{
 .buttons{
     display:flex;
     text-align:center;
-
+margin-top: 5px;
     gap:5px
 }
 .lawCard button{
-    width:100px;
     background:royalblue;
     border-radius:20px;
     border:0;

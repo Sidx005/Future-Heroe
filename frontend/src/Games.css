@@ -1,0 +1,15 @@
+
+.boxes{
+    animation-name: float;
+    animation-duration: 4s;  animation-iteration-count: infinite;
+
+    background: #000;
+    color: #fff;
+
+}
+
+@keyframes float{
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 15px); }
+    to   { transform: translate(0, -0px); }
+}

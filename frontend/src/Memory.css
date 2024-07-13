@@ -1,0 +1,36 @@
+.card{
+    position:'relative'
+  
+  
+  }
+  .card .front
+  {
+    height:200px;
+    padding:2px;
+    width:200px;
+    background:linear-gradient(-45deg,black,#34124f,black);
+    border-radius:5px;
+    cursor:pointer;
+    position:absolute;
+    transform:rotateY(90deg);
+    transition:0.1s;
+    color:'white'
+    
+  }
+  .flip .front{
+    transform:rotateY(0deg);
+     color:'white'
+  }
+  .back{
+    background-color:bisque
+  }
+   .card .back{
+    transform:rotateY(0deg);
+     transition:0.5s ease-in-out;
+  
+  }
+  .flip .back{
+    transform:rotateY(90deg);
+    transition:0.5s ease-in-out
+  
+  }

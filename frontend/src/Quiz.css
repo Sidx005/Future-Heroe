@@ -1,0 +1,283 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f7f7;
+  }
+/* .Quiz-container {
+    width: 600px; 
+    margin: 50px auto; 
+    border: 1px solid #12a5a3; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgb(237, 240, 25,0.1);
+}
+ h1 {
+    text-align: center;
+    color: #333333;
+  }
+
+.congrats-message {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #4CAF50;  
+  background-color: #f9f9f9; 
+  padding: 20px;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+/* Quiz container styles */
+.Quiz-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out; /* add a transition effect */
+}
+
+/* Completed quiz styles */
+.Quiz-container.completed {
+  background-color: #fff;
+  border-color: #ccc;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.Quiz-container.completed h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.Quiz-container.completed p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.congrats-message {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.congrats-message h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.congrats-message p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Question styles */
+.question {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.options {
+  margin-top: 20px;
+}
+
+.options div {
+  margin-bottom: 10px;
+}
+
+.options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.options label {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Animation effects */
+.Quiz-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.Quiz-container.completed {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.buttonContainer{
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:left;
+  gap:30px
+}
+button {
+    /* padding: 1.3em 3em; */
+    padding: 0.8em 1.5em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+  button:active {
+    transform: translateY(-1px);
+  }
+
+#question {
+    margin-bottom: 20px;
+  }
+
+  #options {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+/* Global Styles */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+h1, h2, h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* Quiz Container */
+
+.Quiz-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Question Card */
+
+.Question-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Question-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Question Text */
+
+.Question-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Options */
+
+.Options {
+  margin-top: 20px;
+}
+
+.Option {
+  margin-bottom: 10px;
+}
+
+.Option input[type="radio"] {
+  margin-right: 10px;
+}
+
+.Option label {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.Option:hover label {
+  color: #337ab7;
+}
+
+/* Submit Button */
+
+.Submit-button {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Submit-button:hover {
+  background-color: #23527c;
+}
+
+/* Fun Fact */
+
+.Fun-fact {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.Fun-fact p {
+  font-size: 16px;
+  color: #666;
+}
+

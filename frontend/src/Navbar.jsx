@@ -8,7 +8,7 @@ import './Navbar.css';
 const Navbar = () => {
     const [show, setShow] = useState(false);
     const { username } = useContext(UserContext);
-
+  console.log('Hello')
     const sidebar = () => {
         setShow(!show);
     };
@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className="title">
-                <h2>FutureHeroes</h2>
+              <Link to={'/'}>FutureHeroes</Link>  
             </div>
             <ul className={show ? 'open' : ''}>
                 <li><Link to='/'>Home</Link></li>

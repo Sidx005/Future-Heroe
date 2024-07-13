@@ -88,4 +88,15 @@ app.get('/stories', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+app.get('/stories/:id',async(req,res)=>{
+    try{
+        const story=await StoryModel.findById(req.params.id);
+        if(!story){
+            return res.status(404).send('Story not found');
+
+        }res.json(story)
+    }catch(err){
+     res.status(500).send(err)
+    }
+})
 app.listen(5000, () => console.log('Running on port 5000'));

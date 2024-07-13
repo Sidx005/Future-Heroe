@@ -55,12 +55,15 @@ const StoryBuilder=()=>{
       </div>
       <div className="posts w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
         {stories.map((story,index)=>(
-             <div key={index} className='story-cards shadow-xl shadow-black rounded-md  justify-center p-4 h-[200px] m-5  md: grid-cols-1'>
+          <Link key={story._id} to={`/story/${story._id}`}>
+              <div key={index} className='story-cards shadow-xl shadow-black rounded-md  justify-center p-4  m-5  md: grid-cols-1'>
              <h1 className='font-bold text-xl'>{story.title}</h1>
              <p>Characters: {story.characters}</p>
-             <p>Content: {story.content}</p>
-             <p>Author: {story.author}</p>
+             <p>Content: {story.content.slice(0,10)}{'...'}</p>
+             <p className='font-bold'>Author: {story.author}</p>
            </div>
+          </Link>
+         
         ))
         }
       </div>

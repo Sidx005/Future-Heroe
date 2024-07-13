@@ -53,8 +53,8 @@ const Laws = () => {
                         <div className="cards">
                             <div className="lawCard">{list.law1description.slice(0,510)+"..."}
                                 <div className="buttons">
-                                <a href={list.law1} download>
-                                    <button>Download Law </button>
+                                <a href={list.law1} download={list.law1}>
+                                <button>Download pdf </button>
                                 </a>
                                 <button><a href="https://mediafiles.botpress.cloud/0185259c-8182-4c83-8afc-39725dd4ea62/webchat/bot.html">
                                     Summary
@@ -64,9 +64,9 @@ const Laws = () => {
                             </div>
                             <div className="lawCard">{list.law2description.slice(0,510)+"..."}
                                 <div className="buttons">
-                                <a href={list.law2} download>
-                                    <button>Download Law </button>
-                                </a>
+                               
+                                    <button download={list.law1} className='flex justify-center items-center text-center'>Download pdf </button>
+                            
                                 <button><a href="https://mediafiles.botpress.cloud/0185259c-8182-4c83-8afc-39725dd4ea62/webchat/bot.html">
                                     Summary
                                 </a></button>
@@ -75,7 +75,7 @@ const Laws = () => {
                             <div className="lawCard">{list.law3description.slice(0,510)+"..."}
                                 <div className="buttons">
                                 <a href={list.law3} download>
-                                    <button>Download Law </button>
+                                    <button className='flex justify-center items-center text-center'>Download pdf </button>
                                 </a>
                                 <button><a href="https://mediafiles.botpress.cloud/0185259c-8182-4c83-8afc-39725dd4ea62/webchat/bot.html">
                                     Summary
@@ -86,7 +86,7 @@ const Laws = () => {
                             <div className="lawCard">{list.law4description.slice(0,510)+"..."}
                                 <div className="buttons">
                                 <a href={list.law4} download>
-                                    <button>Download Law </button>
+                                    <button className='flex justify-center items-center text-center'>Download pdf </button>
                                 </a>
                                 <button><a href="https://mediafiles.botpress.cloud/0185259c-8182-4c83-8afc-39725dd4ea62/webchat/bot.html">
                                     Summary
