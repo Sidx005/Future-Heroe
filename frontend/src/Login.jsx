@@ -34,15 +34,15 @@ const Login = () => {
     }
   return (
     
-    <div >
-        <form action="post" onSubmit={handleSubmit}>
+    <div className='relative flex flex-col justify-center items-center min-h-screen w-full gap-6' >
+        <form className='z-50 backdrop-blur-lg text-white bg-[rgba(0,0,0,0.3)] flex shadow-lg p-5 shadow-grey-700 rounded-md flex-col justify-center items-center gap-5' action="post" onSubmit={handleSubmit}>
             <label htmlFor="email"><b>Email</b></label>
-         <input type="email" name='email' onChange={e=>setEmail(e.target.value)} />
+         <input className='p-2 text-black shadow-md shadow-blue-500 rounded-md' type="email" name='email' onChange={e=>setEmail(e.target.value)} />
          <label htmlFor="password"><b>Password</b></label>
 
-         <input type="password" name='password' onChange={e=>setPassword(e.target.value)} />
-         <button type="submit">Login</button>
-         <Link to='/register'>Don't have an account?</Link>
+         <input className='p-2 text-black shadow-blue-400 shadow-md' type="password" name='password' onChange={e=>setPassword(e.target.value)} />
+         <button className='bg-blue-600 text-white hover:bg-blue-500 hover:shadow-sm hover:shadow-blue-700' type="submit">Login</button>
+         <Link className='text-blue-600 underline' to='/register'>Don't have an account?</Link>
         </form>
     </div>
   )
