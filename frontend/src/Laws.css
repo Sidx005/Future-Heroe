@@ -90,3 +90,23 @@ button a{
 
 
 }
+@media(max-width:1024px){
+    .Laws{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .buttons,.cards{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .Country h1{
+        font-size: 1.9rem;
+    }
+    .cards{
+        margin-top: 1rem;
+    }
+}

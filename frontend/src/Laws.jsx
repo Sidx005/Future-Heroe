@@ -39,20 +39,20 @@ const Laws = () => {
         <div>
             <Navbar />
             <header>
-                <h1 className="heading">
+                <h1 className="heading text-4xl">
                     We did the research for you,so that you don't have to!!!
                 </h1>
                 <div className="img">
                     <img src={Lady} alt="" />
                 </div>
             </header>
-            <div className="Laws">
+            <div className="Laws ">
                 {Countries.map((list) => (
                     <div className="Country" key={list.id}>
-                        <h1>{list.country}</h1>
-                        <div className="cards">
+                        <h1 className='font-bold'>{list.country}</h1>
+                        <div className="cards  ">
                             <div className="lawCard">{list.law1description.slice(0,510)+"..."}
-                                <div className="buttons">
+                                <div className="buttons ">
                                 <a href={list.law1} download={list.law1}>
                                 <button>Download pdf </button>
                                 </a>

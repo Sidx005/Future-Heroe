@@ -50,7 +50,7 @@ const Landingpg = () => {
                         Changing Lives
                     </h1>
                     <br />
-                    <button>Explore</button>
+                    <button className='font-normal text-[1.2rem] lg:text-[2.5rem] sm:text-[1.2rem] md:text-[2rem] '>Explore</button>
                 </span>
 
                 <div className="Sup">

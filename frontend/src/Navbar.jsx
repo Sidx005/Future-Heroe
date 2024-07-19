@@ -18,7 +18,7 @@ const Navbar = () => {
 
     return (
         <div className='navbar'>
-            <div className="title">
+            <div className="title font-bold">
               <Link to={'/'}>FutureHeroes</Link>  
             </div>
             <ul className={show ? 'open' : ''}>

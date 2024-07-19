@@ -105,14 +105,8 @@ const Memory = () => {
     >
         <Navbar/>
       <div
-        style={{
-          display: "grid",
-          backgroundColor: "transparent",
-          gridTemplateColumns: "repeat(4,auto)",
-          gridGap: "10px",
-          transition: "0.5s",
-        }}
-        className="grid grid-cols-4"
+        
+        className="grid  grid-cols-1 m-top-[0] p-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-[20px]"
       >
         {cards.map((card, index) => {
           return (
